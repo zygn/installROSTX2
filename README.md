@@ -3,7 +3,7 @@ Install Robot Operating System (ROS) on NVIDIA Jetson TX2
 
 These scripts will install Robot Operating System (ROS) on the NVIDIA Jetson TX2 development kit.
 
-For L4T 28.2 (JetPack 3.2)
+For L4T 28.2 (JetPack 3.2) & For L4T 32.* (JetPack 4.3)
 
 See releases or tags for earlier versions.
 
@@ -11,9 +11,27 @@ The script is based on the Ubuntu ARM install of ROS Kinetic: http://wiki.ros.or
 
 Maintainer of ARM builds for ROS is http://answers.ros.org/users/1034/ahendrix/
 
-There are two scripts:
+There are three scripts:
 
-<strong>installROS.sh</strong>
+<strong>installROS.sh</strong> (For L4T 32 or later / Ubuntu 18.04 / ROS Melodic)
+<pre>
+Usage: ./installROS.sh  [[-p package] | [-h]]
+ -p | --package &lt;packagename&gt;  ROS package to install
+                               Multiple Usage allowed
+                               The first package should be a base package. One of the following:
+                                 ros-melodic-ros-base
+                                 ros-melodic-desktop
+                                 ros-melodic-desktop-full                       
+ </pre>
+
+Default is ros-melodic-ros-base if no packages are specified.
+
+Example Usage:
+
+$ ./installROS.sh -p ros-melodic-desktop -p ros-melodic-rgbd-launch
+
+
+<strong>installROS_Kinetic.sh</strong> (For L4T 28 or earlier / Ubuntu 16.04 / ROS Kinetic)
 <pre>
 Usage: ./installROS.sh  [[-p package] | [-h]]
  -p | --package &lt;packagename&gt;  ROS package to install
@@ -28,7 +46,7 @@ Default is ros-kinetic-ros-base if no packages are specified.
 
 Example Usage:
 
-$ ./installROS.sh -p ros-kinetic-desktop -p ros-kinetic-rgbd-launch
+$ ./installROS_Kinetic.sh -p ros-kinetic-desktop -p ros-kinetic-rgbd-launch
 
 This script installs a baseline ROS environment. There are several tasks:
 
@@ -56,6 +74,10 @@ $ sudo apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116
 </pre> 
 
 ## Release Notes
+<strong>July 2020</strong>
+* Forked from jetsonhacks/installROSTX2
+* L4T 32 or Later
+
 <strong>June 2019</strong>
 * L4T 28.2
 * Update GPG Key for ROS server
