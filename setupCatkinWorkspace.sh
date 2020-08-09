@@ -2,7 +2,9 @@
 # Create a Catkin Workspace and setup ROS environment variables
 # Usage setupCatkinWorkspace.sh dirName
 
+source /opt/ros/melodic/setup.bash
 source /opt/ros/kinetic/setup.bash
+
 DEFAULTDIR=~/catkin_ws
 CLDIR="$1"
 if [ ! -z "$CLDIR" ]; then 
