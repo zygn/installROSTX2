@@ -8,17 +8,21 @@
 # Green is 2
 # Reset is sgr0
 
+# Forked From: jetsonhacks/installROSTX2  (github.com/jetsonhacks/installROSTX2)
+# Rewrite by: Yundo Choi (github.com/zygn/installROSTX2)
+# Changes: Kinetic to Melodic
+
 function usage
 {
     echo "Usage: ./installROS.sh [[-p package] | [-h]]"
-    echo "Install ROS Kinetic"
-    echo "Installs ros-kinetic-ros-base as default base package; Use -p to override"
+    echo "Install ROS Melodic"
+    echo "Installs ros-melodic-ros-base as default base package; Use -p to override"
     echo "-p | --package <packagename>  ROS package to install"
     echo "                              Multiple usage allowed"
     echo "                              Must include one of the following:"
-    echo "                               ros-kinetic-ros-base"
-    echo "                               ros-kinetic-desktop"
-    echo "                               ros-kinetic-desktop-full"
+    echo "                               ros-melodic-ros-base"
+    echo "                               ros-melodic-desktop"
+    echo "                               ros-melodic-desktop-full"
     echo "-h | --help  This message"
 }
 
@@ -28,9 +32,9 @@ function shouldInstallPackages
     echo "Your package list did not include a recommended base package"
     tput sgr0 
     echo "Please include one of the following:"
-    echo "   ros-kinetic-ros-base"
-    echo "   ros-kinetic-desktop"
-    echo "   ros-kinetic-desktop-full"
+    echo "   ros-melodic-ros-base"
+    echo "   ros-melodic-desktop"
+    echo "   ros-melodic-desktop-full"
     echo ""
     echo "ROS not installed"
 }
@@ -53,19 +57,19 @@ done
 # Check to see if other packages were specified
 # If not, set the default base package
 if [ ${#packages[@]}  -eq 0 ] ; then
- packages+="ros-kinetic-ros-base"
+ packages+="ros-melodic-ros-base"
 fi
 echo "Packages to install: "${packages[@]}
 # Check to see if we have a ROS base kinda thingie
 hasBasePackage=false
 for package in "${packages[@]}"; do
-  if [[ $package == "ros-kinetic-ros-base" ]]; then
+  if [[ $package == "ros-melodic-ros-base" ]]; then
      hasBasePackage=true
      break
-  elif [[ $package == "ros-kinetic-desktop" ]]; then
+  elif [[ $package == "ros-melodic-desktop" ]]; then
      hasBasePackage=true
      break
-  elif [[ $package == "ros-kinetic-desktop-full" ]]; then
+  elif [[ $package == "ros-melodic-desktop-full" ]]; then
      hasBasePackage=true
      break
   fi
@@ -130,7 +134,7 @@ sudo rosdep init
 # To find available packages, use:
 rosdep update
 # Environment Setup - Don't add /opt/ros/kinetic/setup.bash if it's already in bashrc
-grep -q -F 'source /opt/ros/kinetic/setup.bash' ~/.bashrc || echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+grep -q -F 'source /opt/ros/melodic/setup.bash' ~/.bashrc || echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 # Install rosinstall
 tput setaf 2
