@@ -33,7 +33,7 @@ $ ./installROS.sh -p ros-melodic-desktop -p ros-melodic-rgbd-launch
 
 <strong>installROS_Kinetic.sh</strong> (For L4T 28 or earlier / Ubuntu 16.04 / ROS Kinetic)
 <pre>
-Usage: ./installROS.sh  [[-p package] | [-h]]
+Usage: ./installROS_Kinetic.sh  [[-p package] | [-h]]
  -p | --package &lt;packagename&gt;  ROS package to install
                                Multiple Usage allowed
                                The first package should be a base package. One of the following:
